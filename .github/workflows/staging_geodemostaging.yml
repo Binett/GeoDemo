@@ -8,15 +8,32 @@ on:
     branches: [ develop ]
   pull_request:
     branches: [ master, staging ]
-  workflow_dispatch:
 
 jobs:
-  build:
+  build: 
+    runs-on: ubuntu-latest
+    if: github.base_ref == 'develop'
+    environment: develop
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+
+
+  buildToRelease:
     runs-on: windows-latest
-    
+    if: github.base_ref == 'staging' || github.base_ref == 'master'
     steps:
       - uses: actions/checkout@v2
-
+      
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
@@ -41,7 +58,7 @@ jobs:
   deployToStaging:
     runs-on: windows-latest
     if: github.base_ref == 'staging'
-    needs: build
+    needs: buildToRelease
     environment:
       name: 'Staging'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
@@ -64,7 +81,7 @@ jobs:
   deployToProduction:
     runs-on: windows-latest
     if: github.base_ref == 'master'
-    needs: build
+    needs: buildToRelease
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
