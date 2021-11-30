@@ -11,7 +11,8 @@ on:
 
 jobs:
   build: 
-    runs-on: windows-latest    
+    runs-on: windows-latest   
+    if: github.event_name == 'push'
     environment: develop
     steps:
     - uses: actions/checkout@v2
