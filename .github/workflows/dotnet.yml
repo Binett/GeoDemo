@@ -34,11 +34,11 @@ jobs:
     - name: build config 
       run: dotnet build --configuration Release
     - name: Publish release      
-      run: dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
+      run: dotnet publish -c Release -o /myapp 
           
     - name: 'Run Azure webapp deploy action using publish profile credentials'
     - uses: azure/webapps-deploy@v2
       with: 
           app-name: geodemotesting # Replace with your app name
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_SECRET  }} # Define secret variable in repository settings as per action documentation
-          package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
+          package: /myapp
