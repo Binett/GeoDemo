@@ -11,8 +11,7 @@ on:
 
 jobs:
   build: 
-    runs-on: windows-latest
-    if: github.base_ref == 'develop'
+    runs-on: windows-latest    
     environment: develop
     steps:
     - uses: actions/checkout@v2
