@@ -40,7 +40,7 @@ jobs:
 
   deployToStaging:
     runs-on: windows-latest
-    if: github.ref == 'refs/heads/staging'
+    if: github.base_ref == 'staging'
     needs: build
     environment:
       name: 'Staging'
@@ -63,7 +63,7 @@ jobs:
           
   deployToProduction:
     runs-on: windows-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.base_ref == 'master'
     needs: build
     environment:
       name: 'Production'
