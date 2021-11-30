@@ -5,8 +5,9 @@ name: Build and deploy ASP.Net Core app to Azure Web App - geodemostaging
 
 on:
   push:
-    branches:
-      - staging
+    branches: [ develop ]
+  pull_request:
+    branches: [ master, staging ]
   workflow_dispatch:
 
 jobs:
@@ -34,7 +35,7 @@ jobs:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
-  deploy:
+  deployToStaging:
     runs-on: windows-latest
     needs: build
     environment:
@@ -55,3 +56,25 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B99B53D0093645E18C6D4D9E3BC2CB56 }}
           package: .
+          
+  deployToProduction:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: .net-app
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'geodemotesting'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7D831EB09B5C46E9B32AC9ADED08DEA2 }}
+          package: .  
