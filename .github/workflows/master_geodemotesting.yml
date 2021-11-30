@@ -1,19 +1,18 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - geodemostaging
+name: Build and deploy ASP.Net Core app to Azure Web App - geodemotesting
 
 on:
   push:
-    branches: [ develop ]
-  pull_request:
-    branches: [ master, staging ]
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
-    
+
     steps:
       - uses: actions/checkout@v2
 
@@ -34,36 +33,9 @@ jobs:
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
-      - name: Automated test 🧪
-        run: dotnet test --no-build --verbosity normal
-    
 
-  deployToStaging:
+  deploy:
     runs-on: windows-latest
-    if: github.ref == 'refs/heads/staging'
-    needs: build
-    environment:
-      name: 'Staging'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: .net-app
-
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'geodemostaging'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B99B53D0093645E18C6D4D9E3BC2CB56 }}
-          package: .
-          
-  deployToProduction:
-    runs-on: windows-latest
-    if: github.ref == 'refs/heads/master'
     needs: build
     environment:
       name: 'Production'
@@ -82,4 +54,4 @@ jobs:
           app-name: 'geodemotesting'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7D831EB09B5C46E9B32AC9ADED08DEA2 }}
-          package: .  
+          package: .
