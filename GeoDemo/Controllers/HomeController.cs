@@ -1,4 +1,5 @@
-﻿using GeoDemo.Models;
+﻿using Calculator.Add;
+using GeoDemo.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,6 +17,14 @@ namespace GeoDemo.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }
+
+        [HttpPost]
+        public IActionResult Index(Addition addition)
+        {
+            var result = addition.Calculate();
+            ViewData["result"] = result;
+            return View();
         }
 
         public IActionResult Index()
