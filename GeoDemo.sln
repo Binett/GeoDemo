@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoDemo", "GeoDemo\GeoDemo.csproj", "{7D88350C-45D7-48B1-84AA-7806478CFA30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoDemo", "GeoDemo\GeoDemo.csproj", "{7D88350C-45D7-48B1-84AA-7806478CFA30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorTests", "CalculatorTests\CalculatorTests.csproj", "{EF627FDB-E909-43F1-BBAC-8650A06A0463}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{70DCD5F1-209A-490E-BE48-D16EE2FE0805}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{7D88350C-45D7-48B1-84AA-7806478CFA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D88350C-45D7-48B1-84AA-7806478CFA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D88350C-45D7-48B1-84AA-7806478CFA30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF627FDB-E909-43F1-BBAC-8650A06A0463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF627FDB-E909-43F1-BBAC-8650A06A0463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF627FDB-E909-43F1-BBAC-8650A06A0463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF627FDB-E909-43F1-BBAC-8650A06A0463}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70DCD5F1-209A-490E-BE48-D16EE2FE0805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70DCD5F1-209A-490E-BE48-D16EE2FE0805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70DCD5F1-209A-490E-BE48-D16EE2FE0805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70DCD5F1-209A-490E-BE48-D16EE2FE0805}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
