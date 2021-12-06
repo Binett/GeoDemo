@@ -8,8 +8,9 @@ namespace Calculator.Add
 {
     public class Addition
     {
-        private readonly int _firstnumber;
-        private readonly int _secondnumber;
+        public int FirstNumber { get; set; }
+        public int SecondNumber { get; set; }
+        
 
         public Addition()
         {
@@ -18,14 +19,14 @@ namespace Calculator.Add
 
         public Addition(int firstnumber, int secondnumber)
         {
-            _firstnumber = firstnumber;
-            _secondnumber = secondnumber;
+            FirstNumber = firstnumber;
+            SecondNumber = secondnumber;
         }
 
         public int Calculate()
         {
-            if (_firstnumber <= 0 || _secondnumber <= 0) return 0;
-            return _firstnumber + _secondnumber; 
+            if (FirstNumber <= 0 || SecondNumber <= 0) return 0;
+            return FirstNumber + SecondNumber; 
         }
 
     }
