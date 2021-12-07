@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\img\pentagon.png">
+    <Content Update="wwwroot\Img\pentagon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
