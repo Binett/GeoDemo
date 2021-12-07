@@ -8,6 +8,7 @@ namespace Calculator.Add
 {
     public class Addition
     {
+
         public int FirstNumber { get; set; }
         public int SecondNumber { get; set; }
         
